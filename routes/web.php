@@ -24,4 +24,16 @@ $router->group(['prefix'=>'api', 'middleware' => 'jwt.auth'], function() use($ro
     //$router->get('/user/{id}', 'UserController@show');
     $router->put('/user/{id}', 'UserController@update');
     $router->delete('/user/{id}', 'UserController@destroy');
+
+    $router->get('/residents', 'ResidentController@index');
+    $router->post('/resident', 'ResidentController@store');
+    //$router->get('/resident/{id}', 'ResidentController@show');
+    $router->put('/resident/{id}', 'ResidentController@update');
+    $router->delete('/resident/{id}', 'ResidentController@destroy');
+
+    $router->get('/apartments', 'ApartmentController@index');
+    $router->post('/apartment', 'ApartmentController@store');
+    //$router->get('/apartment/{id}', 'ApartmentController@show');
+    $router->put('/apartment/{id}', 'ApartmentController@update');
+    $router->delete('/apartment/{id}', 'ApartmentController@destroy');
 });
