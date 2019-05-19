@@ -18,13 +18,10 @@ $router->post(
         'uses' => 'AuthController@authenticate'
     ]
 );
-
-$router->group(
-    ['middleware' => 'jwt.auth'],
-    function() use ($router) {
-        $router->get('users', function() {
-            $users = \App\User::all();
-            return response()->json($users);
-        });
-    }
-);
+$router->group(['prefix'=>'api', 'middleware' => 'jwt.auth'], function() use($router){
+    $router->get('/users', 'UserController@index');
+    $router->post('/user', 'UserController@store');
+    //$router->get('/user/{id}', 'UserController@show');
+    $router->put('/user/{id}', 'UserController@update');
+    $router->delete('/user/{id}', 'UserController@destroy');
+});
