@@ -34,7 +34,7 @@ class CreateTableResidents extends Migration
     public function down()
     {
         Schema::table('residents', function (Blueprint $table) {
-            $table->dropForeign('residents_apartment_apartment_id');
+            $table->dropForeign('residents_apartment_id_foreign');
         });
         Schema::dropIfExists('residents');
     }
