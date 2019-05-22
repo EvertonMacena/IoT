@@ -11,7 +11,7 @@
 |
 */
 $router->get('/', function () {
-    echo('Bem vindo');
+    echo('Bem vindo ao servidor IOT da disciplina de Programação avançada para internet de S.I');
 });
 
 $router->post(
