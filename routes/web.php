@@ -10,10 +10,14 @@
 | and give it the Closure to call when that URI is requested.
 |
 */
+$router->get('/', function () {
+    echo('Bem vindo');
+});
 
 $router->post(
     'auth/login',
     [
+        'as'    => 'login',
         'uses' => 'AuthController@authenticate'
     ]
 );
