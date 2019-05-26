@@ -15,11 +15,13 @@ class CreateTableCars extends Migration
     {
         Schema::create('cars', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('board');
-            $table->string('model')->nullable();
+            $table->unsignedBigInteger('model_id');
             $table->unsignedBigInteger('resident_id');
+            $table->string('board')->unique();
+            $table->string('tag')->unique();
             $table->timestamps();
 
+            $table->foreign('model_id')->references('id')->on('models');
             $table->foreign('resident_id')->references('id')->on('residents');
         });
     }
@@ -31,9 +33,11 @@ class CreateTableCars extends Migration
      */
     public function down()
     {
-        Schema::table('cars', function (Blueprint $table) {
+        Schema::table('cars', function(Blueprint $table){
+            $table->dropForeign('cars_model_id_foreign');
             $table->dropForeign('cars_resident_id_foreign');
         });
+
         Schema::dropIfExists('cars');
     }
 }

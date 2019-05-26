@@ -19,5 +19,15 @@ class Resident extends Model
         'name', 'lastname', 'apartment_id', 'contact', 'email'
     ];
 
+    public function car()
+    {
+        return $this->hasOne(Car::class, 'resident_id');
+    }
+
+    public  function apartment()
+    {
+        return $this->belongsTo(Apartment::class, 'apartment_id');
+    }
+
 
 }

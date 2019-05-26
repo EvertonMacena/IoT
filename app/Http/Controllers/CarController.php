@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Car;
+use App\ModelCar;
 use App\Resident;
 use Illuminate\Http\Request;
 
@@ -17,7 +17,7 @@ class CarController extends Controller
 
     public function index()
     {
-        $cars = Car::all();
+        $cars = ModelCar::all();
         return response()->json($cars);
     }
 
@@ -47,7 +47,7 @@ class CarController extends Controller
             'resident_id'   => 'required'
         ]);
 
-        $car = Car::find($id);
+        $car = ModelCar::find($id);
 
         if (!$car){
             return response()->json(['error' => 'not found'], 404);

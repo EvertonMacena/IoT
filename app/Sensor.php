@@ -19,5 +19,10 @@ class Sensor extends Model
         'id', 'name', 'description'
     ];
 
+    public function apartments()
+    {
+        return $this->belongsToMany(Apartment::class, 'sensors_apartments')->withPivot('is_on');
+    }
+
 
 }

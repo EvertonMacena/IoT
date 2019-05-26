@@ -16,8 +16,18 @@ class Car extends Model
     protected  $table = 'cars';
 
     protected $fillable = [
-        'id', 'board', 'resident_id', 'model'
+        'id', 'model_id', 'resident_id', 'board', 'tag'
     ];
+
+    public function model()
+    {
+        return $this->belongsTo(Model::class, 'model_id');
+    }
+
+    public function resident()
+    {
+        return $this->belongsTo(Resident::class, 'resident_id');
+    }
 
 
 }

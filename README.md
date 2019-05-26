@@ -69,6 +69,12 @@ Execute o seguinte comando para rodar o servidor interno do Lumen.
 php artisan serve
 ```
 
+Ou use o servidor imbutido do PHP:
+
+```
+php -S localhost:8000 -t public
+```
+
 ## Utilizando a API
 
 Para utulizar os recursos da aplicação acesse o link da ducumentação da API para mais informações.

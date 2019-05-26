@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Car;
+use App\ModelCar;
 use App\Resident;
 use App\Sensor;
 use Illuminate\Http\Request;
