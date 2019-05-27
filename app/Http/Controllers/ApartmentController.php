@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Apartment;
+use App\Resident;
+use App\Sensor;
+use http\Env\Response;
 use Illuminate\Http\Request;
 
 class ApartmentController extends Controller
@@ -66,8 +69,55 @@ class ApartmentController extends Controller
             return response()->json(['error' => 'not found'], 404);
         }
 
+        $apartment->sensors()->dettach();
+
         $apartment->delete();
 
         return response()->json('apartamento removed successfully');
+    }
+
+    public function addSensor(Request $request, $id)
+    {
+        $apartment = Apartment::find($id);
+        $sensor = Sensor::find($request->input('sensor_id'));
+
+        if (!$apartment || !$sensor){
+            return response()->json(['error' => 'not found'], 404);
+        }
+
+        $apartment->sensors()->attach($sensor->id, ['is_on' => $request->input('is_on')]);
+
+        return response()->json($sensor->name.' add in apartment '. $apartment->number, 200);
+
+    }
+
+    public function updateSensor(Request $request, $id)
+    {
+        $apartment = Apartment::find($id);
+        $sensor = Sensor::find($request->input('sensor_id'));
+
+        if (!$apartment || !$sensor){
+            return response()->json(['error' => 'not found'], 404);
+        }
+
+        $apartment->sensors()->updateExistingPivot($sensor->id, ['is_on' => $request->input('is_on')]);
+
+        return response()->json($sensor->name.' in apartment '
+            .$apartment->number.' update with success for '. $request->input('is_on'));
+    }
+
+    public function removeSensor($sensorId, $apartmentId)
+    {
+        $apartment= Apartment::find($apartmentId);
+        $sensor = Sensor::find($sensorId);
+
+        if(!$apartment || !$sensor) {
+            return response()->json(['error' => 'not found'], 404);
+        }
+
+        $apartment->sensors()->dettach($sensor->id);
+
+        return response()->json($sensor->name.' removed in apartment '. $apartment->number, 200);
+
     }
 }

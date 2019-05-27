@@ -21,7 +21,7 @@ class Sensor extends Model
 
     public function apartments()
     {
-        return $this->belongsToMany(Apartment::class, 'sensors_apartments')->withPivot('is_on');
+        return $this->belongsToMany(Apartment::class, 'sensors_apartments')->withTimestamps()->withPivot('is_on');
     }
 
 

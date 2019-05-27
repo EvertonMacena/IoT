@@ -36,6 +36,15 @@ $router->group(['prefix'=>'api', 'middleware' => 'jwt.auth'], function() use($ro
     //$router->get('/apartment/{id}', 'ApartmentController@show');
     $router->put('/apartment/{id}', 'ApartmentController@update');
     $router->delete('/apartment/{id}', 'ApartmentController@destroy');
+    $router->post('/apartment/{id}/addSensor', 'ApartmentController@addSensor');
+    $router->patch('/apartment/{id}/updateSensor', 'ApartmentController@updateSensor');
+    $router->delete('/apartment/{apartmentId}/sensor/{sensorId}/deleteSensor', 'ApartmentController@removeSensor');
+
+    $router->get('/models', 'ModelCarController@index');
+    $router->post('/model', 'ModelCarController@store');
+    //$router->get('/model/{id}', 'ModelCarController@show');
+    $router->put('/model/{id}', 'ModelCarController@update');
+    $router->delete('/model/{id}', 'ModelCarController@destroy');
 
     $router->get('/cars', 'CarController@index');
     $router->post('/car', 'CarController@store');

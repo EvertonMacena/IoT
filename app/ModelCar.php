@@ -16,7 +16,7 @@ class ModelCar extends Model
     protected  $table = 'models';
 
     protected $fillable = [
-        'id', 'model', 'ano', 'fabric'
+        'id', 'description', 'ano', 'fabric'
     ];
 
     public function cars()

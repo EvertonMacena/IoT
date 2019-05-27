@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Car;
 use App\ModelCar;
 use App\Resident;
 use Illuminate\Http\Request;
@@ -17,7 +18,7 @@ class CarController extends Controller
 
     public function index()
     {
-        $cars = ModelCar::all();
+        $cars = Car::all();
         return response()->json($cars);
     }
 
@@ -25,13 +26,16 @@ class CarController extends Controller
     {
         $this->validate($request, [
             'board'     => 'required|unique:cars',
-            'resident_id'   => 'required'
+            'model_id'  => 'required',
+            'resident_id'   => 'required',
+            'tag'   => 'required|unique:cars'
         ]);
 
-        $car = new Resident();
+        $car = new Car();
 
         $car->board = $request->board;
-        $car->model = $request->model ? $request->model : null;
+        $car->tag = $request->tag;
+        $car->model_id = $request->model_id;
         $car->resident_id = $request->resident_id;
 
 
@@ -44,17 +48,20 @@ class CarController extends Controller
     {
         $this->validate($request, [
             'board'     => 'required|unique:cars',
-            'resident_id'   => 'required'
+            'model_id'  => 'required',
+            'resident_id'   => 'required',
+            'tag'   => 'required|unique:cars'
         ]);
 
-        $car = ModelCar::find($id);
+        $car = Car::find($id);
 
         if (!$car){
             return response()->json(['error' => 'not found'], 404);
         }
 
         $car->board = $request->board;
-        $car->model = $request->model ? $request->model : null;
+        $car->tag = $request->tag;
+        $car->model_id = $request->model_id;
         $car->resident_id = $request->resident_id;
 
         $car->save();
@@ -64,7 +71,7 @@ class CarController extends Controller
 
     public function destroy($id)
     {
-        $car = Resident::find($id);
+        $car = Car::find($id);
 
         if (!$car){
             return response()->json(['error' => 'not found'], 404);
