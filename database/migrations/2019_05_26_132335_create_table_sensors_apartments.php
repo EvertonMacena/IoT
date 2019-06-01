@@ -17,7 +17,8 @@ class CreateTableSensorsApartments extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('sensor_id');
             $table->unsignedBigInteger('apartment_id');
-            $table->boolean('is_on');
+            $table->boolean('is_on')->default(true);
+            $table->tinyInteger('room')->nullable();
             $table->timestamps();
 
             $table->foreign('sensor_id')->references('id')->on('sensors');

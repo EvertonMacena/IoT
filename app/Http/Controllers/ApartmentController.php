@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Apartment;
-use App\Resident;
 use App\Sensor;
-use http\Env\Response;
 use Illuminate\Http\Request;
 
 class ApartmentController extends Controller

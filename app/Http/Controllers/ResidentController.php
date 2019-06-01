@@ -16,7 +16,7 @@ class ResidentController extends Controller
 
     public function index()
     {
-        $residents = Resident::all();
+        $residents = Resident::with('apartment')->get();
         return response()->json($residents);
     }
 
