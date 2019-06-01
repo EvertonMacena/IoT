@@ -29,4 +29,9 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     protected $hidden = [
         'password',
     ];
+
+    public function resident()
+    {
+        return $this->hasOne(User::class, 'user_id');
+    }
 }

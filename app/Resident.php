@@ -29,5 +29,10 @@ class Resident extends Model
         return $this->belongsTo(Apartment::class, 'apartment_id');
     }
 
+    public  function user()
+    {
+        return $this->belongsTo(Apartment::class, 'user_id');
+    }
+
 
 }
