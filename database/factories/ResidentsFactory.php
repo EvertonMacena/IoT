@@ -11,12 +11,14 @@
 |
 */
 
+use App\User;
+
 $factory->define(App\Resident::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->firstName,
         'lastname' => $faker->lastName,
-        'email' => $faker->email,
         'apartment_id' => $faker->numberBetween(1, 10),
+        'user_id' => factory(User::class)->create()->id,
         'contact' => $faker->phoneNumber,
     ];
 });
