@@ -18,7 +18,7 @@ $router->post(
         'uses' => 'AuthController@authenticate'
     ]
 );
-$router->group(['prefix'=>'api', 'middleware' => 'jwt.auth'], function() use($router){
+$router->group(['prefix'=>'api', 'middleware' => 'jwt.admin.auth'], function() use($router){
     $router->get('/users', 'UserController@index');
     $router->post('/user', 'UserController@store');
     //$router->get('/user/{id}', 'UserController@show');
@@ -57,4 +57,8 @@ $router->group(['prefix'=>'api', 'middleware' => 'jwt.auth'], function() use($ro
     //$router->get('/sensor/{id}', 'SensorController@show');
     $router->put('/sensor/{id}', 'SensorController@update');
     $router->delete('/sensor/{id}', 'SensorController@destroy');
+});
+
+$router->group(['prefix'=>'api', 'middleware' => 'jwt.resident.auth'], function() use($router){
+
 });
