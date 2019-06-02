@@ -22,6 +22,12 @@ class CarController extends Controller
         return response()->json($cars);
     }
 
+    public function show($id)
+    {
+        $car = Car::where('id', $id)->with(['model', 'resident'])->firstOrFail();
+        return response()->json($car);
+    }
+
     public function store(Request $request)
     {
         $this->validate($request, [

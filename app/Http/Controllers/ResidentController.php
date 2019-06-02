@@ -20,6 +20,12 @@ class ResidentController extends Controller
         return response()->json($residents);
     }
 
+    public function show($id)
+    {
+        $apartment = Resident::where('id', $id)->with('apartment')->firstOrFail();
+        return response()->json($apartment);
+    }
+
     public function store(Request $request)
     {
         $this->validate($request, [

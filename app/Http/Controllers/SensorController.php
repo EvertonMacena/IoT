@@ -22,6 +22,11 @@ class SensorController extends Controller
         return response()->json($sensors);
     }
 
+    public function show($id)
+    {
+        return Sensor::findOrFail($id);
+    }
+
     public function store(Request $request)
     {
         $this->validate($request, [

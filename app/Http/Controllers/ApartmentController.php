@@ -21,6 +21,12 @@ class ApartmentController extends Controller
         return response()->json($apartments);
     }
 
+    public function show($id)
+    {
+        $sensor = Apartment::where('id', $id)->with('sensors')->firstOrFail();
+        return response()->json($sensor);
+    }
+
     public function store(Request $request)
     {
         $this->validate($request, [

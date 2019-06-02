@@ -21,6 +21,11 @@ class ModelCarController extends Controller
         return response()->json($models);
     }
 
+    public function show($id)
+    {
+        return ModelCar::findOrFail($id);
+    }
+
     public function store(Request $request)
     {
         $this->validate($request, [
