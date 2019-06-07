@@ -11,12 +11,12 @@
 |
 */
 
-$factory->define(App\User::class, function (Faker\Generator $faker) {
+$factory->define(App\Car::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->name,
-        'email' => $faker->email,
-        'password' => password_hash("1234", PASSWORD_BCRYPT),
-        'type'  => $faker->boolean,
+        'board' => strtoupper($faker->text(6)),
+        'tag' => strtoupper($faker->text(6)),
+        'model_id' => $faker->numberBetween(1, 10),
+        'resident_id' => $faker->numberBetween(1, 10),
     ];
 });
 

@@ -11,12 +11,10 @@
 |
 */
 
-$factory->define(App\User::class, function (Faker\Generator $faker) {
+$factory->define(App\Sensor::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->name,
-        'email' => $faker->email,
-        'password' => password_hash("1234", PASSWORD_BCRYPT),
-        'type'  => $faker->boolean,
+        'name' => $faker->text(128),
+        'description' => $faker->text(400),
     ];
 });
 

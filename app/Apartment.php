@@ -19,5 +19,15 @@ class Apartment extends Model
         'number', 'floor'
     ];
 
+    public function residents()
+    {
+        return $this->hasMany(Resident::class, 'resident_id');
+    }
+
+    public function sensors()
+    {
+        return $this->belongsToMany(Sensor::class, 'sensors_apartments')->withTimestamps()->withPivot('is_on', 'room');
+    }
+
 
 }

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Middleware\JwtAdminMiddleware;
+
 require_once __DIR__.'/../vendor/autoload.php';
 
 (new Laravel\Lumen\Bootstrap\LoadEnvironmentVariables(
@@ -66,7 +68,8 @@ $app->singleton(
 // ]);
 
 $app->routeMiddleware([
-    'jwt.auth' => App\Http\Middleware\JwtMiddleware::class,
+    'jwt.admin.auth' => App\Http\Middleware\JwtAdminMiddleware::class,
+    'jwt.resident.auth' => App\Http\Middleware\JwtResidentMiddleware::class,
 ]);
 
 /*

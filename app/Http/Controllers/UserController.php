@@ -20,6 +20,11 @@ class UserController extends Controller
         return response()->json($users);
     }
 
+    public function show($id)
+    {
+        return User::findOrFail($id);
+    }
+
     public function store(Request $request)
     {
         $this->validate($request, [

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Car;
+use App\ModelCar;
 use App\Resident;
 use Illuminate\Http\Request;
 
@@ -17,21 +18,30 @@ class CarController extends Controller
 
     public function index()
     {
-        $cars = Car::all();
+        $cars = Car::with('model')->get();
         return response()->json($cars);
+    }
+
+    public function show($id)
+    {
+        $car = Car::where('id', $id)->with(['model', 'resident'])->firstOrFail();
+        return response()->json($car);
     }
 
     public function store(Request $request)
     {
         $this->validate($request, [
             'board'     => 'required|unique:cars',
-            'resident_id'   => 'required'
+            'model_id'  => 'required',
+            'resident_id'   => 'required',
+            'tag'   => 'required|unique:cars'
         ]);
 
-        $car = new Resident();
+        $car = new Car();
 
         $car->board = $request->board;
-        $car->model = $request->model ? $request->model : null;
+        $car->tag = $request->tag;
+        $car->model_id = $request->model_id;
         $car->resident_id = $request->resident_id;
 
 
@@ -44,7 +54,9 @@ class CarController extends Controller
     {
         $this->validate($request, [
             'board'     => 'required|unique:cars',
-            'resident_id'   => 'required'
+            'model_id'  => 'required',
+            'resident_id'   => 'required',
+            'tag'   => 'required|unique:cars'
         ]);
 
         $car = Car::find($id);
@@ -54,7 +66,8 @@ class CarController extends Controller
         }
 
         $car->board = $request->board;
-        $car->model = $request->model ? $request->model : null;
+        $car->tag = $request->tag;
+        $car->model_id = $request->model_id;
         $car->resident_id = $request->resident_id;
 
         $car->save();
@@ -64,7 +77,7 @@ class CarController extends Controller
 
     public function destroy($id)
     {
-        $car = Resident::find($id);
+        $car = Car::find($id);
 
         if (!$car){
             return response()->json(['error' => 'not found'], 404);

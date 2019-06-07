@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Car;
+use App\ModelCar;
 use App\Resident;
 use App\Sensor;
 use Illuminate\Http\Request;
@@ -20,6 +20,11 @@ class SensorController extends Controller
     {
         $sensors = Sensor::all();
         return response()->json($sensors);
+    }
+
+    public function show($id)
+    {
+        return Sensor::findOrFail($id);
     }
 
     public function store(Request $request)
