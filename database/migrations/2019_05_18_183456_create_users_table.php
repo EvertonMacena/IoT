@@ -21,6 +21,15 @@ class CreateUsersTable extends Migration
             $table->boolean('type')->default(false);
             $table->timestamps();
         });
+
+        $user = new \App\User();
+
+        $user->email = 'admin@admin';
+        $user->name = 'admin';
+        $user->password = password_hash("1234", PASSWORD_BCRYPT);
+        $user->type = true;
+
+        $user->save();
     }
 
     /**

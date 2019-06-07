@@ -80,3 +80,8 @@ php -S localhost:8000 -t public
 Para utulizar os recursos da aplicação acesse o link da ducumentação da API para mais informações.
 
 *   https://app.swaggerhub.com/apis-docs/EvertonMacena/smart_building/1.0.0
+
+#### User admin
+
+*   Email: admin@admin
+*   Password: 1234
