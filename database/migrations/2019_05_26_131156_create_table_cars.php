@@ -17,8 +17,8 @@ class CreateTableCars extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('model_id');
             $table->unsignedBigInteger('resident_id');
-            $table->string('board')->unique();
-            $table->string('tag')->unique();
+            $table->string('board', 128)->unique();
+            $table->string('tag', 128)->unique();
             $table->timestamps();
 
             $table->foreign('model_id')->references('id')->on('models');
