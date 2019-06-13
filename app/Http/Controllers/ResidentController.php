@@ -39,7 +39,6 @@ class ResidentController extends Controller
 
         $resident->name = $request->name;
         $resident->lastname = $request->lastname ? $request->lastname : null;
-        $resident->email = $request->email;
         $resident->contact = $request->contact;
         $resident->apartment_id = $request->apartment_id;
         $resident->user_id = $request->user_id;
@@ -66,7 +65,6 @@ class ResidentController extends Controller
 
         $resident->name = $request->name;
         $resident->lastname = $request->lastname ? $request->lastname : null;
-        $resident->email = $request->email;
         $resident->contact = $request->contact;
         $resident->apartment_id = $request->apartment_id;
         $resident->user_id = $request->user_id;
