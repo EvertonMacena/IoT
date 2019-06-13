@@ -42,6 +42,7 @@ class ResidentController extends Controller
         $resident->email = $request->email;
         $resident->contact = $request->contact;
         $resident->apartment_id = $request->apartment_id;
+        $resident->user_id = $request->user_id;
 
         $resident->save();
 
@@ -68,6 +69,7 @@ class ResidentController extends Controller
         $resident->email = $request->email;
         $resident->contact = $request->contact;
         $resident->apartment_id = $request->apartment_id;
+        $resident->user_id = $request->user_id;
 
         $resident->save();
 
