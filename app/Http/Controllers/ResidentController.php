@@ -29,7 +29,6 @@ class ResidentController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'email'     => 'required|email|unique:residents',
             'name'      => 'required',
             'contact'   => 'required',
             'apartment_id' => 'required'
@@ -51,7 +50,6 @@ class ResidentController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'email'     => 'required|email|unique:users',
             'name'      => 'required',
             'contact'   => 'required',
             'apartment_id' => 'required'
