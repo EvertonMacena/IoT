@@ -80,6 +80,21 @@ class ApartmentController extends Controller
         return response()->json('apartamento removed successfully');
     }
 
+    public function showSensor($apartmentId, $sensorId)
+    {
+        $apartment = Apartment::find($apartmentId);
+        $sensor = Sensor::find($sensorId);
+
+        if (!$apartment || !$sensor){
+            return response()->json(['error' => 'not found'], 404);
+        }
+
+        $sensors = $apartment->sensors->whereIn('id', $sensor->id);
+
+        return response()->json($sensors);
+
+    }
+
     public function addSensor(Request $request, $id)
     {
         $apartment = Apartment::find($id);

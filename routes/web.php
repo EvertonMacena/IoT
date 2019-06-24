@@ -21,6 +21,9 @@ $router->post(
         'uses' => 'AuthController@authenticate'
     ]
 );
+
+$router->get('/apartment/{apartmentId}/sensor/{sensorId}/showSensor', 'ApartmentController@showSensor');
+
 $router->group(['prefix'=>'api', 'middleware' => 'jwt.admin.auth'], function() use($router){
     $router->get('/users', 'UserController@index');
     $router->post('/user', 'UserController@store');
