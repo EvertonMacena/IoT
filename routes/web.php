@@ -22,7 +22,7 @@ $router->post(
     ]
 );
 
-$router->get('/apartment/{apartmentId}/sensor/{sensorId}/showSensor', 'ApartmentController@showSensor');
+$router->get('api/apartment/{apartmentId}/sensor/{sensorId}/show', 'ApartmentController@showSensor');
 
 $router->group(['prefix'=>'api', 'middleware' => 'jwt.admin.auth'], function() use($router){
     $router->get('/users', 'UserController@index');
