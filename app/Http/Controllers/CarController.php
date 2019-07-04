@@ -53,10 +53,10 @@ class CarController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'board'     => 'required|unique:cars',
+            'board'     => 'required',
             'model_id'  => 'required',
             'resident_id'   => 'required',
-            'tag'   => 'required|unique:cars'
+            'tag'   => 'required'
         ]);
 
         $car = Car::find($id);
